@@ -2,6 +2,69 @@ import streamlit as st
 import pandas as pd
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
+import base64
+
+@st.cache_data()
+def get_img_as_base64(file):
+    with open(file, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+img = get_img_as_base64("fundo4k.png")
+img2 = get_img_as_base64("pdifundo2.png")
+
+page_bg_img = f"""
+<style>
+header, footer {{
+    visibility: hidden !important;
+}}
+
+#MainMenu {{
+    visibility: visible !important;
+    color: #F44D00;
+}}
+
+[data-testid="stAppViewContainer"] > .main {{
+    background-image: url("data:fundoesg4k/png;base64,{img}");
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}}
+[data-testid="stSidebar"] > div:first-child {{
+    background-image: url("data:esgfundo1/png;base64,{img2}");
+    background-position: center; 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}}
+
+[data-testid="stHeader"] {{
+    background: rgba(0,0,0,0);
+}}
+
+[data-testid="stToolbar"] {{
+    right: 2rem;
+}}
+
+.stTextInput>div>div>input[type="text"] {{
+    background-color: #CFE6D2; 
+    color: #000; 
+    border-radius: 7px; 
+    border: 2px solid #000010; 
+    padding: 5px; 
+    width: 500; 
+}}
+
+@media (max-width: 360px) {{
+    [data-testid="stAppViewContainer"] > .main, [data-testid="stSidebar"] > div:first-child {{
+        background-size: auto;
+    }}
+}}
+</style>
+"""
+
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
 def get_google_sheets_data():
     SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
