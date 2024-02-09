@@ -4,6 +4,10 @@ from googleapiclient.discovery import build
 from google.oauth2 import service_account
 import base64
 
+st.set_page_config(
+    page_title="TempPad",
+    page_icon="🌤️"
+)
 @st.cache_data()
 def get_img_as_base64(file):
     with open(file, "rb") as f:
