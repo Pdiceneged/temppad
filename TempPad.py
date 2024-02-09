@@ -51,15 +51,6 @@ header, footer {{
     right: 2rem;
 }}
 
-.stTextInput>div>div>input[type="text"] {{
-    background-color: #CFE6D2; 
-    color: #000; 
-    border-radius: 7px; 
-    border: 2px solid #000010; 
-    padding: 5px; 
-    width: 500; 
-}}
-
 @media (max-width: 360px) {{
     [data-testid="stAppViewContainer"] > .main, [data-testid="stSidebar"] > div:first-child {{
         background-size: auto;
